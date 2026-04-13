@@ -86,3 +86,5 @@ RUN chown -R www-data:www-data /var/www && \
 
 # Exponer los puertos
 EXPOSE 80 7380 7381 7382 7385
+
+WORKDIR /var/www
