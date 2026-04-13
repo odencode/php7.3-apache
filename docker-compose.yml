@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  php73:
+    build: .
+    container_name: php73
+    ports:
+      - "8073:80"
+    volumes:
+      # Tus proyectos CI3
+      - ./www:/var/www/html
+    environment:
+      - MYSQL_HOST=host.docker.internal  # Usar el nombre del contenedor MySQL
+    extra_hosts:
+      - "mysql-local:host-gateway"  # Permitir acceso a host.docker.internal
