@@ -5,17 +5,17 @@ services:
     build: .
     container_name: php73
     ports:
-      - "7380:7380"  # /www
-      - "7381:7381"  # Nuevo puerto para /apps
-      - "7382:7382"  # Nuevo puerto para /api
-      - "7385:7385"  # Nuevo puerto para /shadaai
+      - "7380:7380"  # Proyecto /var/www/www
+      - "7381:7381"  # Proyecto /var/www/apps
+      - "7382:7382"  # Proyecto /var/www/api
+      - "7385:7385"  # Proyecto /var/www/shadaai
     volumes:
-      # Tus proyectos CI3
-      - ./www:/www           # Proyecto principal
-      - ./apps:/apps         # Proyecto apps
-      - ./api:/api           # Proyecto api
-      - ./shadaai:/shadaai   # Proyecto shadaai
+      # Montar las carpetas locales en las rutas correctas dentro del contenedor
+      - ./www:/var/www/www           # Tu proyecto principal
+      - ./shadaai:/var/www/shadaai   # Proyecto shadaai
+      - ./apps:/var/www/apps         # Proyecto apps
+      - ./api:/var/www/api           # Proyecto api
     environment:
-      - MYSQL_HOST=host.docker.internal  # Usar el nombre del contenedor MySQL
+      - MYSQL_HOST=host.docker.internal
     extra_hosts:
-      - "mysql-local:host-gateway"  # Permitir acceso a host.docker.internal
+      - "mysql-local:host-gateway"
